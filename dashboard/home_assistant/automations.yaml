@@ -1,0 +1,374 @@
+# ==========================================================
+# Smart Home Energy Monitoring System
+# Home Assistant Automations
+# ==========================================================
+#
+# Purpose:
+# Generate notifications and actions based on MQTT energy
+# monitoring data received from the simulator or ESP32.
+#
+# Author: Akash Das
+# Project: Smart Home Energy Monitoring System
+#
+# ==========================================================
+
+# ==========================================================
+# Automation 1
+# High Power Consumption Alert
+# ==========================================================
+
+- id: high_power_consumption_alert
+
+  alias: High Power Consumption Alert
+
+  description: >
+    Notify user when power consumption exceeds
+    2000 watts.
+
+  trigger:
+
+    - platform: numeric_state
+
+      entity_id: sensor.home_energy_power
+
+      above: 2000
+
+  action:
+
+    - service: persistent_notification.create
+
+      data:
+
+        title: "⚠ High Power Consumption"
+
+        message: >
+          Power consumption has exceeded 2000 W.
+          Consider turning off unnecessary appliances.
+
+  mode: single
+
+
+# ==========================================================
+# Automation 2
+# High Energy Cost Alert
+# ==========================================================
+
+- id: high_energy_cost_alert
+
+  alias: High Energy Cost Alert
+
+  description: >
+    Notify user when estimated energy cost
+    exceeds ₹100.
+
+  trigger:
+
+    - platform: numeric_state
+
+      entity_id: sensor.home_energy_cost
+
+      above: 100
+
+  action:
+
+    - service: persistent_notification.create
+
+      data:
+
+        title: "💰 High Energy Cost"
+
+        message: >
+          Estimated electricity cost has exceeded ₹100.
+
+  mode: single
+
+
+# ==========================================================
+# Automation 3
+# Device Offline Alert
+# ==========================================================
+
+- id: energy_monitor_offline
+
+  alias: Energy Monitor Offline
+
+  description: >
+    Notify user when simulator or ESP32
+    goes offline.
+
+  trigger:
+
+    - platform: state
+
+      entity_id: binary_sensor.energy_monitor_online
+
+      to: "off"
+
+  action:
+
+    - service: persistent_notification.create
+
+      data:
+
+        title: "🔌 Energy Monitor Offline"
+
+        message: >
+          Energy monitoring device is offline.
+          Check MQTT connectivity.
+
+  mode: single
+
+
+# ==========================================================
+# Automation 4
+# Alert Status Trigger
+# ==========================================================
+
+- id: alert_status_detected
+
+  alias: Energy Alert Detected
+
+  description: >
+    Trigger notification whenever the alert
+    engine reports an ALERT condition.
+
+  trigger:
+
+    - platform: state
+
+      entity_id: sensor.energy_alert_status
+
+      to: "ALERT"
+
+  action:
+
+    - service: persistent_notification.create
+
+      data:
+
+        title: "🚨 Energy Alert"
+
+        message: >
+          The Smart Home Energy Monitoring System
+          detected an abnormal operating condition.
+
+  mode: single
+
+
+# ==========================================================
+# Automation 5
+# Excessive Daily Energy Usage
+# ==========================================================
+
+- id: excessive_energy_usage
+
+  alias: Excessive Energy Usage
+
+  description: >
+    Warn user when cumulative energy consumption
+    exceeds 15 kWh.
+
+  trigger:
+
+    - platform: numeric_state
+
+      entity_id: sensor.home_energy_consumption
+
+      above: 15
+
+  action:
+
+    - service: persistent_notification.create
+
+      data:
+
+        title: "⚡ Excessive Energy Usage"
+
+        message: >
+          Daily energy consumption has exceeded
+          15 kWh.
+
+  mode: single
+
+
+# ==========================================================
+# Automation 6
+# Overvoltage Warning
+# ==========================================================
+
+- id: overvoltage_warning
+
+  alias: Overvoltage Warning
+
+  description: >
+    Trigger warning when voltage exceeds
+    safe operating levels.
+
+  trigger:
+
+    - platform: numeric_state
+
+      entity_id: sensor.home_energy_voltage
+
+      above: 250
+
+  action:
+
+    - service: persistent_notification.create
+
+      data:
+
+        title: "⚠ Overvoltage Warning"
+
+        message: >
+          Voltage has exceeded 250V.
+          Electrical equipment may be at risk.
+
+  mode: single
+
+
+# ==========================================================
+# Automation 7
+# Undervoltage Warning
+# ==========================================================
+
+- id: undervoltage_warning
+
+  alias: Undervoltage Warning
+
+  description: >
+    Trigger warning when voltage drops
+    below safe operating levels.
+
+  trigger:
+
+    - platform: numeric_state
+
+      entity_id: sensor.home_energy_voltage
+
+      below: 200
+
+  action:
+
+    - service: persistent_notification.create
+
+      data:
+
+        title: "⚠ Undervoltage Warning"
+
+        message: >
+          Voltage has dropped below 200V.
+
+  mode: single
+
+
+# ==========================================================
+# Automation 8
+# Power Factor Warning
+# ==========================================================
+
+- id: poor_power_factor
+
+  alias: Poor Power Factor Warning
+
+  description: >
+    Notify when power factor falls below
+    recommended threshold.
+
+  trigger:
+
+    - platform: numeric_state
+
+      entity_id: sensor.home_energy_power_factor
+
+      below: 0.80
+
+  action:
+
+    - service: persistent_notification.create
+
+      data:
+
+        title: "⚠ Poor Power Factor"
+
+        message: >
+          Power factor has fallen below 0.80.
+          Energy efficiency may be reduced.
+
+  mode: single
+
+
+# ==========================================================
+# Automation 9
+# Daily Summary Notification
+# ==========================================================
+
+- id: daily_energy_summary
+
+  alias: Daily Energy Summary
+
+  description: >
+    Generate daily energy summary notification.
+
+  trigger:
+
+    - platform: time
+
+      at: "21:00:00"
+
+  action:
+
+    - service: persistent_notification.create
+
+      data:
+
+        title: "📊 Daily Energy Summary"
+
+        message: >
+          Energy Used: {{ states('sensor.home_energy_consumption') }} kWh
+
+          Estimated Cost: ₹{{ states('sensor.home_energy_cost') }}
+
+          Last Appliance:
+          {{ states('sensor.active_appliance') }}
+
+  mode: single
+
+
+# ==========================================================
+# Automation 10
+# Device Reconnected
+# ==========================================================
+
+- id: energy_monitor_reconnected
+
+  alias: Energy Monitor Reconnected
+
+  description: >
+    Notify when simulator or ESP32 reconnects.
+
+  trigger:
+
+    - platform: state
+
+      entity_id: binary_sensor.energy_monitor_online
+
+      to: "on"
+
+  action:
+
+    - service: persistent_notification.create
+
+      data:
+
+        title: "✅ Energy Monitor Online"
+
+        message: >
+          Device has successfully reconnected
+          to the MQTT broker.
+
+  mode: single
+
+# ==========================================================
+# End of Automations
+# ==========================================================

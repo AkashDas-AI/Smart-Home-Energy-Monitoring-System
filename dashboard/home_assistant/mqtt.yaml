@@ -1,0 +1,214 @@
+# ==========================================================
+# Smart Home Energy Monitoring System
+# Home Assistant MQTT Entities
+# ==========================================================
+#
+# Purpose:
+# Expose MQTT telemetry data from the Python Simulator
+# and future ESP32 device as Home Assistant sensors.
+#
+# MQTT Topic:
+# home/energy/node1/telemetry
+#
+# ==========================================================
+
+mqtt:
+
+  sensor:
+
+    # ------------------------------------------------------
+    # Voltage Sensor
+    # ------------------------------------------------------
+
+    - name: "Home Energy Voltage"
+      unique_id: home_energy_voltage
+      state_topic: "home/energy/node1/telemetry"
+      value_template: "{{ value_json.voltage }}"
+      unit_of_measurement: "V"
+      device_class: voltage
+      state_class: measurement
+
+    # ------------------------------------------------------
+    # Current Sensor
+    # ------------------------------------------------------
+
+    - name: "Home Energy Current"
+      unique_id: home_energy_current
+      state_topic: "home/energy/node1/telemetry"
+      value_template: "{{ value_json.current }}"
+      unit_of_measurement: "A"
+      device_class: current
+      state_class: measurement
+
+    # ------------------------------------------------------
+    # Active Power
+    # ------------------------------------------------------
+
+    - name: "Home Energy Power"
+      unique_id: home_energy_power
+      state_topic: "home/energy/node1/telemetry"
+      value_template: "{{ value_json.active_power_w }}"
+      unit_of_measurement: "W"
+      device_class: power
+      state_class: measurement
+
+    # ------------------------------------------------------
+    # Apparent Power
+    # ------------------------------------------------------
+
+    - name: "Home Energy Apparent Power"
+      unique_id: home_energy_apparent_power
+      state_topic: "home/energy/node1/telemetry"
+      value_template: "{{ value_json.apparent_power_va }}"
+      unit_of_measurement: "VA"
+
+    # ------------------------------------------------------
+    # Reactive Power
+    # ------------------------------------------------------
+
+    - name: "Home Energy Reactive Power"
+      unique_id: home_energy_reactive_power
+      state_topic: "home/energy/node1/telemetry"
+      value_template: "{{ value_json.reactive_power_var }}"
+      unit_of_measurement: "VAR"
+
+    # ------------------------------------------------------
+    # Power Factor
+    # ------------------------------------------------------
+
+    - name: "Home Energy Power Factor"
+      unique_id: home_energy_power_factor
+      state_topic: "home/energy/node1/telemetry"
+      value_template: "{{ value_json.power_factor }}"
+      icon: mdi:flash
+
+    # ------------------------------------------------------
+    # Energy Consumption
+    # ------------------------------------------------------
+
+    - name: "Home Energy Consumption"
+      unique_id: home_energy_consumption
+      state_topic: "home/energy/node1/telemetry"
+      value_template: "{{ value_json.energy_kwh }}"
+      unit_of_measurement: "kWh"
+      device_class: energy
+      state_class: total_increasing
+
+    # ------------------------------------------------------
+    # Estimated Electricity Cost
+    # ------------------------------------------------------
+
+    - name: "Home Energy Cost"
+      unique_id: home_energy_cost
+      state_topic: "home/energy/node1/telemetry"
+      value_template: "{{ value_json.estimated_cost }}"
+      unit_of_measurement: "INR"
+      icon: mdi:currency-inr
+
+    # ------------------------------------------------------
+    # Appliance Name
+    # ------------------------------------------------------
+
+    - name: "Active Appliance"
+      unique_id: active_appliance
+      state_topic: "home/energy/node1/telemetry"
+      value_template: "{{ value_json.appliance }}"
+      icon: mdi:home-lightning-bolt
+
+    # ------------------------------------------------------
+    # Appliance Category
+    # ------------------------------------------------------
+
+    - name: "Appliance Category"
+      unique_id: appliance_category
+      state_topic: "home/energy/node1/telemetry"
+      value_template: "{{ value_json.category }}"
+
+    # ------------------------------------------------------
+    # Alert Status
+    # ------------------------------------------------------
+
+    - name: "Energy Alert Status"
+      unique_id: energy_alert_status
+      state_topic: "home/energy/node1/telemetry"
+      value_template: "{{ value_json.alert_status }}"
+      icon: mdi:alert-circle
+
+    # ------------------------------------------------------
+    # Alert Count
+    # ------------------------------------------------------
+
+    - name: "Alert Count"
+      unique_id: alert_count
+      state_topic: "home/energy/node1/telemetry"
+      value_template: "{{ value_json.alert_count }}"
+
+  # ========================================================
+  # Binary Sensors
+  # ========================================================
+
+  binary_sensor:
+
+    # ------------------------------------------------------
+    # Device Online Status
+    # ------------------------------------------------------
+
+    - name: "Energy Monitor Online"
+      unique_id: energy_monitor_online
+
+      state_topic: "home/energy/node1/status"
+
+      value_template: >
+        {{ value_json.status == "ONLINE" }}
+
+      payload_on: "True"
+      payload_off: "False"
+
+      device_class: connectivity
+
+    # ------------------------------------------------------
+    # Alert Active Status
+    # ------------------------------------------------------
+
+    - name: "Energy Alert Active"
+      unique_id: energy_alert_active
+
+      state_topic: "home/energy/node1/telemetry"
+
+      value_template: >
+        {{ value_json.alert_status == "ALERT" }}
+
+      payload_on: "True"
+      payload_off: "False"
+
+      device_class: problem
+
+# ==========================================================
+# Dashboard Usage
+# ==========================================================
+#
+# These entities will appear inside Home Assistant:
+#
+# sensor.home_energy_voltage
+# sensor.home_energy_current
+# sensor.home_energy_power
+# sensor.home_energy_apparent_power
+# sensor.home_energy_reactive_power
+# sensor.home_energy_power_factor
+# sensor.home_energy_consumption
+# sensor.home_energy_cost
+# sensor.active_appliance
+# sensor.appliance_category
+# sensor.energy_alert_status
+# sensor.alert_count
+#
+# binary_sensor.energy_monitor_online
+# binary_sensor.energy_alert_active
+#
+# ==========================================================
+# Project:
+# Smart Home Energy Monitoring System
+#
+# Author:
+# Akash Das
+# ==========================================================
