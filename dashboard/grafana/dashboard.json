@@ -1,0 +1,294 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "liveNow": false,
+  "panels": [
+
+    {
+      "id": 1,
+      "title": "Voltage (V)",
+      "type": "timeseries",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "topic": "home/energy/node1/telemetry",
+          "metric": "voltage"
+        }
+      ]
+    },
+
+    {
+      "id": 2,
+      "title": "Current (A)",
+      "type": "timeseries",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "topic": "home/energy/node1/telemetry",
+          "metric": "current"
+        }
+      ]
+    },
+
+    {
+      "id": 3,
+      "title": "Active Power (W)",
+      "type": "timeseries",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "topic": "home/energy/node1/telemetry",
+          "metric": "active_power_w"
+        }
+      ]
+    },
+
+    {
+      "id": 4,
+      "title": "Energy Consumption (kWh)",
+      "type": "timeseries",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "topic": "home/energy/node1/telemetry",
+          "metric": "energy_kwh"
+        }
+      ]
+    },
+
+    {
+      "id": 5,
+      "title": "Electricity Cost (INR)",
+      "type": "stat",
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 16
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "topic": "home/energy/node1/telemetry",
+          "metric": "estimated_cost"
+        }
+      ]
+    },
+
+    {
+      "id": 6,
+      "title": "Power Factor",
+      "type": "gauge",
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 6,
+        "y": 16
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "topic": "home/energy/node1/telemetry",
+          "metric": "power_factor"
+        }
+      ],
+      "options": {
+        "minValue": 0,
+        "maxValue": 1
+      }
+    },
+
+    {
+      "id": 7,
+      "title": "Current Appliance",
+      "type": "stat",
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 12,
+        "y": 16
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "topic": "home/energy/node1/telemetry",
+          "metric": "appliance"
+        }
+      ]
+    },
+
+    {
+      "id": 8,
+      "title": "Alert Status",
+      "type": "stat",
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 18,
+        "y": 16
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "topic": "home/energy/node1/telemetry",
+          "metric": "alert_status"
+        }
+      ]
+    },
+
+    {
+      "id": 9,
+      "title": "Apparent Power (VA)",
+      "type": "timeseries",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 22
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "topic": "home/energy/node1/telemetry",
+          "metric": "apparent_power_va"
+        }
+      ]
+    },
+
+    {
+      "id": 10,
+      "title": "Reactive Power (VAR)",
+      "type": "timeseries",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 22
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "topic": "home/energy/node1/telemetry",
+          "metric": "reactive_power_var"
+        }
+      ]
+    },
+
+    {
+      "id": 11,
+      "title": "Device Status",
+      "type": "stat",
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 30
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "topic": "home/energy/node1/status",
+          "metric": "status"
+        }
+      ]
+    },
+
+    {
+      "id": 12,
+      "title": "Alert Count",
+      "type": "stat",
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 30
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "topic": "home/energy/node1/telemetry",
+          "metric": "alert_count"
+        }
+      ]
+    }
+
+  ],
+
+  "refresh": "5s",
+
+  "schemaVersion": 39,
+
+  "style": "dark",
+
+  "tags": [
+    "iot",
+    "energy-monitoring",
+    "mqtt",
+    "esp32",
+    "home-assistant",
+    "smart-home"
+  ],
+
+  "templating": {
+    "list": []
+  },
+
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+
+  "timepicker": {},
+
+  "timezone": "",
+
+  "title": "Smart Home Energy Monitoring Dashboard",
+
+  "uid": "smart-home-energy-monitor",
+
+  "version": 1,
+
+  "weekStart": ""
+}
