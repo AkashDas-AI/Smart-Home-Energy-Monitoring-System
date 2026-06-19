@@ -1,0 +1,93 @@
+{
+    "telemetry": {
+        "device_id": "SIM_NODE_001",
+        "location": "Smart Home Lab",
+        "timestamp": "2026-06-15T10:05:49",
+        "appliance": "Air Conditioner",
+        "category": "Cooling",
+        "is_active": true,
+        "voltage": 229.8,
+        "current": 6.4,
+        "apparent_power_va": 1470.72,
+        "active_power_w": 1321.51,
+        "reactive_power_var": 645.21,
+        "power_factor": 0.90,
+        "energy_kwh": 12.47,
+        "estimated_cost": 106.00,
+        "alert_status": "NORMAL",
+        "alert_count": 0
+    },
+
+    "telemetry_high_consumption": {
+        "device_id": "SIM_NODE_001",
+        "location": "Smart Home Lab",
+        "timestamp": "2026-06-15T10:06:17",
+        "appliance": "Induction Cooktop",
+        "category": "Kitchen",
+        "is_active": true,
+        "voltage": 231.4,
+        "current": 9.8,
+        "apparent_power_va": 2267.72,
+        "active_power_w": 2040.95,
+        "reactive_power_var": 987.43,
+        "power_factor": 0.90,
+        "energy_kwh": 18.62,
+        "estimated_cost": 158.27,
+        "alert_status": "ALERT",
+        "alert_count": 1
+    },
+
+    "alerts": {
+        "timestamp": "2026-06-15T10:06:17",
+        "device_id": "SIM_NODE_001",
+        "alert_type": "OVERCURRENT",
+        "severity": "CRITICAL",
+        "message": "Current exceeded configured safety threshold.",
+        "current": 16.2,
+        "threshold": 15.0
+    },
+
+    "alerts_overload": {
+        "timestamp": "2026-06-15T10:08:42",
+        "device_id": "SIM_NODE_001",
+        "alert_type": "POWER_OVERLOAD",
+        "severity": "CRITICAL",
+        "message": "Power consumption exceeded maximum safe limit.",
+        "active_power_w": 3250.0,
+        "threshold": 3000.0
+    },
+
+    "alerts_voltage": {
+        "timestamp": "2026-06-15T10:09:11",
+        "device_id": "SIM_NODE_001",
+        "alert_type": "OVERVOLTAGE",
+        "severity": "CRITICAL",
+        "message": "Voltage exceeded configured upper limit.",
+        "voltage": 256.5,
+        "threshold": 250.0
+    },
+
+    "status_online": {
+        "device_id": "SIM_NODE_001",
+        "timestamp": "2026-06-15T10:05:49",
+        "status": "ONLINE"
+    },
+
+    "status_offline": {
+        "device_id": "SIM_NODE_001",
+        "timestamp": "2026-06-15T11:00:00",
+        "status": "OFFLINE"
+    },
+
+    "status_error": {
+        "device_id": "SIM_NODE_001",
+        "timestamp": "2026-06-15T11:05:32",
+        "status": "ERROR"
+    },
+
+    "status_restarting": {
+        "device_id": "SIM_NODE_001",
+        "timestamp": "2026-06-15T11:06:10",
+        "status": "RESTARTING"
+    }
+}
