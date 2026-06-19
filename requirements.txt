@@ -1,0 +1,38 @@
+# MQTT Communication
+paho-mqtt==2.1.0
+
+# Environment Variables
+python-dotenv==1.1.1
+
+# HTTP Requests / APIs
+requests==2.32.4
+
+# Data Handling
+pandas==2.3.0
+numpy==2.3.1
+
+# Report Generation
+fpdf2==2.8.7
+
+# Visualization
+matplotlib==3.10.3
+
+# Config Files
+PyYAML==6.0.2
+
+# Testing
+pytest==8.4.1
+pytest-cov==6.2.1
+
+# Logging
+colorlog==6.9.0
+
+# Date Utilities
+python-dateutil==2.9.0.post0
+
+# Code Quality
+flake8==7.3.0
+black==25.1.0
+
+# Optional Type Checking
+mypy==1.16.1

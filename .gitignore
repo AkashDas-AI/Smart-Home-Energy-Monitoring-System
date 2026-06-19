@@ -1,0 +1,206 @@
+# ==================================================
+# Smart Home Energy Monitoring System
+# .gitignore
+# ==================================================
+
+# --------------------------------------------------
+# Python
+# --------------------------------------------------
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python Packaging
+build/
+dist/
+*.egg-info/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type Checking
+.mypy_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# --------------------------------------------------
+# Environment Variables / Secrets
+# --------------------------------------------------
+
+.env
+.env.*
+!.env.example
+
+# MQTT Credentials
+mqtt_credentials.json
+
+# API Keys
+config/secrets.json
+
+# --------------------------------------------------
+# IDEs
+# --------------------------------------------------
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# IntelliJ
+*.iml
+
+# --------------------------------------------------
+# Operating System
+# --------------------------------------------------
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# Linux
+*~
+
+# --------------------------------------------------
+# Logs
+# --------------------------------------------------
+
+logs/
+*.log
+
+# --------------------------------------------------
+# Runtime Outputs
+# --------------------------------------------------
+
+outputs/csv_logs/*
+outputs/alerts/*
+outputs/exports/*
+
+# Keep folder structure
+!outputs/csv_logs/.gitkeep
+!outputs/alerts/.gitkeep
+!outputs/exports/.gitkeep
+
+# --------------------------------------------------
+# Generated Reports
+# --------------------------------------------------
+
+reports/daily/*
+reports/monthly/*
+reports/pdf/*
+
+!reports/daily/.gitkeep
+!reports/monthly/.gitkeep
+!reports/pdf/.gitkeep
+
+# --------------------------------------------------
+# Data Files
+# --------------------------------------------------
+
+data/raw/*
+data/processed/*
+
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Keep sample datasets
+!data/sample_data/
+
+# --------------------------------------------------
+# Grafana / Dashboard Exports
+# --------------------------------------------------
+
+dashboard/grafana/screenshots/*
+
+!dashboard/grafana/screenshots/.gitkeep
+
+# --------------------------------------------------
+# Images Generated During Testing
+# --------------------------------------------------
+
+images/dashboards/generated/*
+images/simulation/generated/*
+
+# --------------------------------------------------
+# ESP32 / Arduino
+# --------------------------------------------------
+
+*.elf
+*.bin
+*.map
+
+# Arduino Build Folders
+build/
+
+# PlatformIO
+.pio/
+.vscode/
+
+# --------------------------------------------------
+# Docker
+# --------------------------------------------------
+
+docker-data/
+docker-volumes/
+
+# --------------------------------------------------
+# Temporary Files
+# --------------------------------------------------
+
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# --------------------------------------------------
+# PDFs Generated During Runtime
+# --------------------------------------------------
+
+outputs/*.pdf
+reports/pdf/generated/
+
+# --------------------------------------------------
+# Local Databases
+# --------------------------------------------------
+
+*.db
+*.sqlite
+*.sqlite3
+
+# --------------------------------------------------
+# MQTT Broker Data
+# --------------------------------------------------
+
+mosquitto/data/
+mosquitto/log/
+
+# --------------------------------------------------
+# InfluxDB Data
+# --------------------------------------------------
+
+influxdb/
+
+# --------------------------------------------------
+# Node-RED (Future Expansion)
+# --------------------------------------------------
+
+node_modules/
+
+# --------------------------------------------------
+# GitHub Actions Secrets Cache
+# --------------------------------------------------
+
+.github/secrets/
